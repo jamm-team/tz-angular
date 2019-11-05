@@ -1,0 +1,10 @@
+<div [ngbPopover]="calendarInputValue.value"
+     container="body"
+     class="input-block chart-input-value"
+     triggers="mouseenter:mouseleave"
+     [ngStyle]="styleInputValue"
+     #input_title
+     contenteditable="true" (blur)="changeInputValue(input_title.innerText)"
+>
+  {{calendarInputValue.value}}
+</div>

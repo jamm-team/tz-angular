@@ -1,0 +1,32 @@
+<ng-template #popTitle>
+  <span class="event-block-detail-title">{{calendarEventPeriod.title}}</span>
+</ng-template>
+
+<ng-template #popContent>
+  <div [ngStyle]="{'background-color': calendarEventPeriod.color}" class="event-block-detail-color"></div>
+  <div>
+    <mat-icon aria-hidden="false" class="event-block-detail-date-icon">date_range</mat-icon>
+    <span class="event-block-detail-date-period">{{calendarEventPeriod.start | dateDay}} - {{calendarEventPeriod.end | dateDay}}</span>
+  </div>
+  <p>{{calendarEventPeriod.description}}</p>
+  <div *ngIf="calendarEventPeriod.image">
+    <img [src]="calendarEventPeriod.image" class="image-preview-file">
+  </div>
+
+
+</ng-template>
+
+
+<div class="event-block" [ngStyle]="styleEventPeriod">
+  <div [ngbPopover]="popContent"
+       [popoverTitle]="popTitle"
+       [autoClose]="'outside'"
+       popoverClass="event-period-popover"
+       container="body"
+       class="event-block-content"
+       triggers="mouseenter:mouseleave"
+  >
+    <mat-icon *ngIf="calendarEventPeriod.image" aria-hidden="false" class="event-block-image" >image</mat-icon>
+    <span class="event-block-title">{{calendarEventPeriod.title}}</span>
+  </div>
+</div>

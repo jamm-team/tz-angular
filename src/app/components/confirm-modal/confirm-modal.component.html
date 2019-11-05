@@ -1,0 +1,12 @@
+<div  appModalDraggable [modalDraggableHandle]="draggableHandle">
+  <div #draggableHandle class="modal-header" style="cursor:move;">
+    {{confirmTitle}}
+  </div>
+  <div class="modal-body">
+    {{confirmText}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="confirm()">Да</button>
+    <button type="button" class="btn btn-outline-dark" (click)="cancel()" ngbAutofocus>Нет</button>
+  </div>
+</div>

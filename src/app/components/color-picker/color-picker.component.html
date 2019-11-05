@@ -1,0 +1,23 @@
+<ng-template #pickerContent>
+  <div class="opened">
+    <div class="colors">
+      <div (click)="changeColor(paint)"
+           *ngFor="let paint of defaultColors"
+           class="circle"
+           [ngStyle]="{'background': paint}"></div>
+    </div>
+
+    <div class="hex-code">
+      <p>Hex</p>
+      <div class="g-input">
+        <input type="text" maxlength="7" [value]="color"
+               (keyup)="changeColorManual(paintInput.value)"
+               #paintInput/>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="color-picker">
+  <div class="summary-info" [ngbPopover]="pickerContent" [ngStyle]="{'background': color}"></div>
+</div>

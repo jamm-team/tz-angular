@@ -1,0 +1,82 @@
+<div  appModalDraggable [modalDraggableHandle]="draggableHandle">
+  <div #draggableHandle class="modal-header" style="cursor:move;">
+    <h4 class="modal-title" id="modal-basic-title">Период события</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <input class="form-control calendar-input"
+                 placeholder="Начало периода"
+                 name="startPeriod"
+                 [displayMonths]="1"
+                 [outsideDays]="true"
+                 [showWeekNumbers]="true"
+                 [(ngModel)]="calendarEventPeriod.start"
+                 ngbDatepicker #startPeriod="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="startPeriod.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <input class="form-control calendar-input"
+                 placeholder="Конец периода"
+                 name="endPeriod"
+                 [displayMonths]="1"
+                 [outsideDays]="true"
+                 [showWeekNumbers]="true"
+                 [(ngModel)]="calendarEventPeriod.end"
+                 ngbDatepicker #endPeriod="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="endPeriod.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      <app-color-picker
+        [color]="calendarEventPeriod.color"
+        (event)="setColor($event)"
+      ></app-color-picker>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Название</label>
+      <input type="text" [(ngModel)]="calendarEventPeriod.title" class="form-control" id="title" aria-describedby="title" placeholder="Введите название">
+    </div>
+    <div class="form-group">
+      <label for="description">Описание</label>
+      <textarea type="text" [(ngModel)]="calendarEventPeriod.description" class="form-control" id="description" rows="3"></textarea>
+    </div>
+
+
+    <div class="image-drop-container"
+         (click)="fileInput.click()"
+         (fileDropped)="uploadImage($event)"
+         appImageDrop >
+      Перетащите сюда файл рисунка
+      <input hidden type="file" #fileInput (change)="uploadImage($event.target.files)">
+    </div>
+
+    <div *ngIf="calendarEventPeriod.image" class="image-preview">
+      <mat-icon aria-hidden="false" class="image-drop-delete" (click)="deleteImage()">delete</mat-icon>
+      <img [src]="calendarEventPeriod.image" class="image-preview-file">
+    </div>
+    <div *ngIf="imagePreview" class="image-preview">
+      <mat-icon aria-hidden="false" class="image-drop-delete" (click)="deleteImage()">clear</mat-icon>
+      <img [src]="imagePreview" class="image-preview-file">
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="save()" ngbAutofocus>Сохранить</button>
+    <button type="button" class="btn btn-outline-dark" (click)="close()">Отменить</button>
+  </div>
+</div>

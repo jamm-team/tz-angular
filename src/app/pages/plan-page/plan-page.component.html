@@ -1,0 +1,23 @@
+<div class="container-fluid">
+
+  <mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <mat-drawer #drawer [mode]="'over'">
+
+    </mat-drawer>
+    <mat-drawer-content>
+
+      <app-calendar *ngFor="let calendar of calendars | active; index as i"
+                    [start] =  calendar.start
+                    [end] =  calendar.end
+                    [daySize] = settingService.getDaySize()
+                    [eventItemHeaderSize] = settingService.getEventItemHeaderSize()
+                    [calendar] = calendar
+                    (delete) = deleteCalendar(i)
+      ></app-calendar>
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+
+
+
+</div>

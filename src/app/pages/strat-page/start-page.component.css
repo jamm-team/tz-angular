@@ -1,0 +1,14 @@
+.container-fluid {
+  padding: 0px 10px;
+}
+.top-nav-panel {
+  background-color: #0000006e!important;
+}
+
+
+.top-menu-logo {
+  max-height: 47px;
+  margin-right: 20px;
+  width: auto;
+  display: inline-block;
+}

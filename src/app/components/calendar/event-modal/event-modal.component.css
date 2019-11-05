@@ -1,0 +1,53 @@
+.calendar-input {
+  height: 28px;
+  width: 150px;
+}
+
+
+button.calendar, button.calendar:active {
+  width: 2.75rem;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: center;
+}
+
+
+.image-drop-delete {
+  font-size: 24px;
+  width: 27px;
+  height: 25px;
+  line-height: 24px;
+  cursor: pointer;
+  position: absolute;
+  color: #2f3437;
+  border: 1px solid #a7a7ac;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  margin-left: 2px;
+  margin-top: 14px;
+}
+
+.image-drop-container {
+  height: 50px;
+  min-height: 50px;
+  border: 2px dashed #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaaaaa;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor:pointer;
+}
+
+.image-preview-block{
+  width: 50%;
+  margin-top: 12px;
+}
+.image-preview-file{
+  max-width: 100%;
+  max-height: 300px;
+  margin-top: 12px;
+}

@@ -1,0 +1,175 @@
+<div class="card calendar-card">
+
+  <div class="card-header calendar-card-header">
+    <div class="calendar-title-icon-container">
+      <mat-icon class="calendar-title-icon rotate" *ngIf="calendar.type === 1">bar_chart</mat-icon>
+      <mat-icon class="calendar-title-icon" *ngIf="calendar.type === 2">input</mat-icon>
+    </div>
+    <div class="calendar-title">
+        <span #calendar_title contenteditable="true" (blur)="renameCalendar(calendar_title.innerText)">
+         {{calendar.title}}
+        </span>
+    </div>
+    <!--div class="calendar-block-action" *ngIf="!calendar.isHistory">
+      <mat-icon class="calendar-history-icon"
+                ngbTooltip="Отобразить период -1 год"
+                [openDelay]="500"
+                [ngStyle]="{'color':calendar.history ? 'green' : '#4c522e' }"
+                (click)="toggleHistory()">
+        history
+      </mat-icon>
+    </div-->
+  </div>
+
+  <div class="card-body calendar-card-body">
+    <div class="calendar row">
+      <div class="calendar-header-items" [ngStyle]="eventItemHeaderSizeP()">
+        <div class="calendar-block-add-container">
+          <mat-icon class="calendar-action-icon" (click)="addBlock()">add_box</mat-icon>
+          <mat-icon class="calendar-action-icon" (click)="deleteCalendar()">delete</mat-icon>
+        </div>
+      </div>
+
+      <div class="col calendar-chart calendar-chart-header" [ngStyle]="stylePeriod( datePeriod.size, 0)" #chartScrollHeader>
+        <div class="chart-header-row calendar-date-row" style="border-top: unset;" >
+          <div class="chart-header-title"
+               *ngFor="let item of datePeriod.years; index as i;"
+               [ngStyle]="stylePeriod( item.size, item.offset )"
+          >
+            {{item.name}}
+          </div>
+        </div>
+
+        <div class="chart-header-row calendar-date-row">
+          <div class="chart-header-title"
+               *ngFor="let item of datePeriod.months; index as i;"
+               [ngStyle]="stylePeriod( item.size, item.offset )"
+          >
+            {{item.name}}
+          </div>
+        </div>
+        <div class="chart-header-row week-row">
+          <div class="chart-header-title week-cell"
+               *ngFor="let item of datePeriod.weeks; index as i;"
+               [ngStyle]="stylePeriod( item.size, item.offset )"
+            >
+              <span class='supsub'>
+                  <span class='supscript'>{{getDate2digit(item.end)}}</span>
+                  <span class='subscript'>{{getDate2digit(item.start)}}</span>
+              </span>
+              <span>{{item.name}}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="calendar row">
+      <div class="calendar-body-items" [ngStyle]="eventItemHeaderSizeP()">
+        <div *ngFor="let block of calendar.blocks; index as b;">
+          <div class="row chart-body-row calendar-item calendar-item-block">
+            <span #block_title contenteditable="true" (blur)="renameBlock(block, block_title.innerText)">
+              {{block.title}}
+            </span>
+            <div class="calendar-block-action">
+              <mat-icon class="calendar-block-action-icon" (click)="addGroup(block)">add_box</mat-icon>
+              <mat-icon class="calendar-block-action-icon" (click)="deleteBlock(b)">delete</mat-icon>
+            </div>
+          </div>
+          <div *ngFor="let group of block.groups; index as g;">
+            <div class="chart-body-row calendar-item calendar-item-group">
+              <span #group_title contenteditable="true" (blur)="renameGroup(group, group_title.innerText)">
+                {{group.title}}
+              </span>
+              <div class="calendar-block-action">
+                <mat-icon *ngIf="isInputCalendar()" class="calendar-group-action-icon" (click)="addInput(group)">add_box</mat-icon>
+                <mat-icon *ngIf="isEventCalendar()" class="calendar-group-action-icon" (click)="addEvent(group)">add_box</mat-icon>
+                <mat-icon class="calendar-group-action-icon" (click)="deleteGroup(block, g)">delete</mat-icon>
+              </div>
+            </div>
+            <div *ngFor="let event of group.events; index as e;">
+              <div *ngIf="event.title" class="chart-body-row calendar-item calendar-item-event">
+                <span #event_title contenteditable="true" (blur)="renameEvent(event, event_title.innerText)">
+                 {{event.title}}
+                </span>
+                <div class="calendar-block-action">
+                  <mat-icon class="calendar-group-action-icon" (click)="deleteEvent(group, e)">delete</mat-icon>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let input of group.inputs; index as i;">
+              <div *ngIf="input.title" class="chart-body-row calendar-item calendar-item-event">
+                <span #event_title contenteditable="true" (blur)="renameEvent(input, event_title.innerText)">
+                 {{input.title}}
+                </span>
+                <div class="calendar-block-action">
+                  <mat-icon class="calendar-group-action-icon" (click)="deleteInput(group, i)">delete</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col calendar-chart calendar-chart-body"
+           style="border-top: unset;"
+           [ngStyle]="stylePeriod( datePeriod.size, 0)"
+           (scroll)="updateScroll()"
+           #chartScrollBody
+      >
+        <div [ngStyle]="stylePeriod( datePeriod.size, 0)" style="overflow: hidden;">
+        <div *ngFor="let block of calendar.blocks">
+          <div class="chart-body-row calendar-item-block" [ngStyle]="stylePeriod( datePeriod.size, 0)"></div>
+          <div *ngFor="let group of block.groups">
+            <div class="chart-body-row calendar-item-group" [ngStyle]="stylePeriod( datePeriod.size, 0)"></div>
+            <div *ngFor="let input of group.inputs">
+
+              <div *ngIf="input.title" class="chart-body-row calendar-item-event">
+                <div class="chart-body-grid"
+                     *ngFor="let item of datePeriod.weeks;"
+                     [ngStyle]="stylePeriod( item.size, item.offset )"
+                     (dblclick)="addInputValue(item.start, input)"
+                ></div>
+
+                <app-calendar-input-value
+                  *ngFor="let value of input.values;"
+                  [calendarInputValue]="value"
+                  [daySize]="daySize"
+                  (change)="changeInputValue(value, $event)"
+                >
+                </app-calendar-input-value>
+
+              </div>
+            </div>
+
+            <div *ngFor="let event of group.events">
+              <div *ngIf="event.title" class="chart-body-row calendar-item-event">
+
+                <div class="chart-body-grid"
+                     *ngFor="let item of datePeriod.weeks; index as i;"
+                     [ngStyle]="stylePeriod( item.size, item.offset )"
+                     (dblclick)="addEventPeriodBlock(item.start, item.end, event)"
+                ></div>
+
+                <app-calendar-event-block
+                  *ngFor="let period of event.periods;"
+                  [calendarEventPeriod]="period"
+                  [daySize]="daySize"
+                  (dblclick)="updEventPeriodBlock(period)"
+                >
+                </app-calendar-event-block>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

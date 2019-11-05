@@ -1,0 +1,237 @@
+.supsub {
+  color: black;
+  font-size: 10px;
+  display: inline-block;
+  margin-right: 13px;
+}
+.supscript { position:absolute; left:2px; top: 8px}
+.subscript { position:absolute; left:2px; top: -8px;}
+
+.calendar-card {
+  margin-top: 13px;
+  margin-bottom: 3px;
+  /*border: 1px solid rgb(90, 88, 88);*/
+  border-radius: unset;
+  border: 2px solid #747d4a;
+  /*box-shadow: 0 0 1px 1px rgba(120, 120, 120, 0.87);*/
+}
+
+.calendar-card-header {
+  padding: 2px !important;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: #b6ce32ab;
+  padding: 0px;
+  border-radius: unset;
+}
+
+.calendar-card-body {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.calendar {
+  margin: 0px;
+}
+
+.block-width-resizer {
+  min-width: 10px;
+  width: 10px;
+  background-color: #ddd;
+  background-image: linear-gradient(90deg,transparent 50%,hsla(0,0%,100%,.5) 0);
+  cursor: ew-resize;
+}
+
+.calendar-header-items,
+.calendar-body-items {
+  display: block;
+  padding: 0px;
+  max-width: 1000px;
+  min-width: 200px;
+}
+
+.calendar-date-row {
+  height:20px !important;
+  line-height: 20px !important;
+}
+
+.week-row {
+  height:35px !important;
+  line-height: 35px !important;
+}
+
+.week-cell {
+  color:#727272;
+}
+
+.chart-block-name {
+  line-height: 17px;
+  height: 20px;
+  padding: 2px;
+  font-size: 14px;
+  background-color: #333232;
+  color: #e9ecef;
+  font-weight: 700;
+}
+.chart-group-name {
+  line-height: 17px;
+  height: 20px;
+  padding: 2px;
+  font-size: 14px;
+  background-color: #dee2e6;
+  font-weight: 700;
+}
+
+.calendar-item {
+  line-height: 24px;
+  padding: 0px;
+  font-size: 14px;
+}
+
+.calendar-item-block {
+  background-color: #585555fc;
+  color: #ddd;
+  font-weight: 700;
+  padding-left: 2px;
+  height: 19px !important;
+  line-height: normal !important;
+}
+
+.calendar-item-group {
+  background-color: #ddd;
+  color: black;
+  font-weight: 700;
+  padding-left: 12px;
+  height: 19px !important;
+  line-height: normal !important;
+}
+
+.calendar-item-event {
+  background-color: white;
+  color: black;
+  font-weight: 400;
+  padding-left: 22px;
+  height: inherit;
+  line-height: inherit;
+}
+
+.calendar-chart {
+  display: block;
+  color: black;
+  font-size: 14px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+  border-left: 1px solid #ddd;
+  margin: 0px;
+  padding:0px;
+
+}
+
+.calendar-chart-header {
+  overflow: hidden!important;
+}
+
+.calendar-chart-body {
+  padding-bottom: 10px;
+  overflow: auto!important;
+}
+
+.chart-header-row,
+.chart-body-row {
+  display: block;
+  line-height: 24px;
+  white-space: nowrap;
+  position: relative;
+  height: 24px;
+  border-top: 1px solid #ddd;
+  left: 0px;
+  width: inherit;
+  margin: 0px;
+}
+
+.chart-header-title,
+.chart-body-grid {
+  position: absolute;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  height: inherit;
+  line-height: inherit;
+  overflow: hidden;
+}
+
+.chart-body-grid:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.chart-header-title-first {
+  border-left: 1px solid #ddd;
+}
+
+.chart-input-value {
+  font-size: 10px;
+}
+
+.calendar-block-add-container {
+  display:flex;
+  width: 100%; height: 100%;
+  align-items: flex-end;
+}
+.calendar-action-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #5a5858;
+  cursor:pointer;
+}
+.calendar-title {
+  display: inline;
+}
+.calendar-title-icon-container {
+  display: inline;
+}
+.calendar-title-icon {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  top: 5px;
+  position: relative;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.calendar-history-icon {
+  font-size: 25px;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  top: 5px;
+  position: relative;
+  margin-right: 5px;
+}
+
+.calendar-block-action {
+  display: inline;
+  position: absolute;
+  right: 0px;
+  top: 1px;
+}
+
+.calendar-block-action-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #dcdcdc;
+  cursor:pointer;
+}
+
+.calendar-group-action-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #999;
+  cursor:pointer;
+}
